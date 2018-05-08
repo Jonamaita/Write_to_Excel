@@ -1,0 +1,23 @@
+{
+  "name": "track_mantos",
+  "version": "1.0.0",
+  "description": "trazabilidad de mantenimiento escribiendo en excel",
+  "main": "app.js",
+  "scripts": {
+    "start": "supervisor app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "track_mantos"
+  ],
+  "author": "Jonathan Maita",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "excel4node": "^1.3.6",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
+  }
+}

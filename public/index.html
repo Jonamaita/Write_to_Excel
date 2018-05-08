@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Track_Mantos
+        </title>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width; initial-scale=1.0" name="viewport"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600" rel="stylesheet"/>
+        <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+        <script src="https://use.fontawesome.com/66786629b2.js"></script>
+        <body>
+            <div class="container-fluid" id="head">
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+                        <img src="/imgs/logo-blanco.svg" class="logo" width="100" height="100"/>
+                    </div>
+                    <div class="text-center col-md-10 col-sm-10 col-xs-12">
+                        <h1 class="lemon">
+                            <strong>
+                                Track Producción
+                            </strong>
+                            <hr/>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="form">
+                <div class="row">
+                    <div class="lemon text-center">
+                        <h4>
+                            Llenar Formulario para trazabilidad
+                        </h4>
+                    </div>
+                    <div class="lemon text-center ">
+                        <form action="datos_track" method="get">
+                            <fieldset class="form-group">
+                                <h4>
+                                    Tipo de Falla
+                                </h4>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="problema" value="electrico" checked/>
+                                        Electrico
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="problema" value="mecanico"/>
+                                        Mecanico
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <div class="form-group">
+                                <label for="comentario_problema">
+                                    Comentario de la falla:
+                                </label>
+                                <textarea class="letra-negra form-control" name="comentarios" rows="3" cols="" required>
+                                </textarea>
+                            </div>
+                            <input class="letra-negra" type="submit" value="Enviar"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="container-fluid lemon">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <p>
+                                Desarrollo by Mantenimiento Mantos Group.
+                            </p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12 text-left">
+                            2017
+                            <li class="fa fa-copyright">
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </body>
+    </html>
