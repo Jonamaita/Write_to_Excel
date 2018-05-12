@@ -5,12 +5,14 @@
             Track_Mantos
         </title>
         <meta charset="utf-8"/>
-        <meta content="width=device-width; initial-scale=1.0" name="viewport"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600" rel="stylesheet"/>
         <link href="/css/main.css" rel="stylesheet" type="text/css"/>
-        <script src="https://use.fontawesome.com/66786629b2.js">
-        </script>
+        <script src="https://use.fontawesome.com/66786629b2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/javascript.js"></script>
+          </head>
         <body>
             <div class="container-fluid" id="head">
                 <div class="row">
@@ -31,11 +33,11 @@
                 <div class="row">
                     <div class="lemon text-center">
                         <h4>
-                            Llenar Formulario para trazabilidad
+                            Llenar Formulario Para Trazabilidad
                         </h4>
                     </div>
                     <div class="lemon text-center ">
-                        <form action="datos_track" method="get">
+                        <form action="" class="letra-formulario" method="">
                             <fieldset class="form-group">
                                 <h4>
                                     Tipo de Falla
@@ -57,32 +59,47 @@
                                 <label for="comentario_problema">
                                     Comentario de la falla:
                                 </label>
-                                <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" required="" rows="3"></textarea>
+                                <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" required="" rows="3" id="comentario"></textarea>
                             </div>
-                            <input class="letra-negra" type="submit" value="Enviar"/>
+                            <input class="letra-negra" type="submit" value="Enviar" id="enviar-form"/>
                         </form>
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="lemon text-center no-visible" id="form_exito">
+                        <h4>
+                            Su Formulario se ha enviado con exito
+                        </h4>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
             <footer>
                 <div class="container-fluid lemon">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                            <p>
-                                Desarrollo by Mantenimiento Mantos Group.
-                            </p>
-                        </div>
-                    </div>
+                   
                     <hr/>
+                
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12 text-left">
-                            2017
+
+                        <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                            2018
                             <li class="fa fa-copyright">
                             </li>
+                     </div>
+                      <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                            <p>
+                                Desarrollado by Operaciones Mantos Group.
+                                <br>
+                                Todos los derechos reservado.
+                            </p>
                         </div>
                     </div>
                 </div>
             </footer>
         </body>
-    </head>
+       
 </html>

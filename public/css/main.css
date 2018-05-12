@@ -15,6 +15,10 @@ body{
 .letra-negra{
 	color:black;
 }
-.letra-formulario{
-	font:15px;
+.letra-size{
+	font-size: :16pt !important;
+
+}
+.no-visible{
+	display: ;
 }
