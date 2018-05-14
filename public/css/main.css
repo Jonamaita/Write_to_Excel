@@ -20,5 +20,18 @@ body{
 
 }
 .no-visible{
-	display: ;
+	display: none;
+}
+.correcto{
+	border: 2px green solid;
+}
+.incorrecto{
+	border:2px red solid;
+}
+textarea:invalid {
+  border: 3px solid red;
+}
+
+textarea:valid {
+  border: 3px solid green;
 }
