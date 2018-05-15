@@ -9,97 +9,98 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600" rel="stylesheet"/>
         <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/animate.css" rel="stylesheet" type="text/css"/>
         <script src="https://use.fontawesome.com/66786629b2.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="/javascript.js"></script>
-          </head>
-        <body>
-            <div class="container-fluid" id="head">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1 col-xs-12 text-center">
-                        <img class="logo" height="100" src="/imgs/logo-blanco.svg" width="100"/>
-                    </div>
-                    <div class="text-center col-md-10 col-sm-10 col-xs-12">
-                        <h1 class="lemon">
-                            <strong>
-                                Track Producción
-                            </strong>
-                            <hr/>
-                        </h1>
-                    </div>
+    </head>
+    <body>
+        <div class="container-fluid" id="head">
+            <div class="row">
+                <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+                    <img class="logo" height="100" src="/imgs/logo-blanco.svg" width="100"/>
+                </div>
+                <div class="text-center col-md-10 col-sm-10 col-xs-12">
+                    <h1 class="lemon">
+                        <strong>
+                            Track Producción
+                        </strong>
+                        <hr/>
+                    </h1>
                 </div>
             </div>
-            <div class="container" id="form">
-                <div class="row">
-                    <div class="lemon text-center">
-                        <h4>
-                            Llenar Formulario Para Trazabilidad
-                        </h4>
-                    </div>
-                    <div class="lemon text-center ">
-                        <form action="" class="letra-formulario" method="">
-                            <fieldset class="form-group">
-                                <h4>
-                                    Tipo de Falla
-                                </h4>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico"/>
-                                        Electrico
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" name="problema" type="radio" value="Mecanico"/>
-                                        Mecanico
-                                    </label>
-                                </div>
-                            </fieldset>
-                            <div class="form-group">
-                                <label for="comentario_problema">
-                                    Comentario de la falla:
+        </div>
+        <div class="container" id="form">
+            <div class="row">
+                <div class="lemon text-center">
+                    <h4>
+                        Llenar Formulario Para Trazabilidad
+                    </h4>
+                </div>
+                <div class="lemon text-center ">
+                    <form  class="letra-formulario" id="form_1">
+                        <fieldset class="form-group">
+                            <h4>
+                                Tipo de Falla
+                            </h4>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico"/>
+                                    Electrico
                                 </label>
-                                <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" required="" rows="3" id="comentario"></textarea>
                             </div>
-                            <input class="letra-negra" type="submit" value="Enviar" id="enviar-form"/>
-                        </form>
-                    </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="problema" type="radio" value="Mecanico"/>
+                                    Mecanico
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div class="form-group" id="text_comentario">
+                            <label for="comentario_problema">
+                                Comentario de la falla:
+                            </label>
+                            <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" rows="3" id="comentario" placeholder="Escriba un comentario de la falla"></textarea>
+                        </div>
+                        <input class="letra-negra" type="button" value="Enviar" id="enviar-form"/>
+                    </form>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="lemon text-center no-visible" id="form_exito">
-                        <h4>
-                            Su Formulario se ha enviado con exito
-                        </h4>
-                        
-                    </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="no-visible" id="form_success_error">
+                    <h4 class="lemon text-center" id="res_form">
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="lemon text-center hide animated fadeIn" id="run_tf">
+                <h2>Oprima el boton cuando la falla este resuelta</h2>
+                <a href="/falla_success" class="btn btn-success">Falla Resuelta</a>
                     
                 </div>
                 
             </div>
-            <footer>
-                <div class="container-fluid lemon">
-                   
-                    <hr/>
-                
-                    <div class="row">
-
-                        <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-                            2018
-                            <li class="fa fa-copyright">
-                            </li>
-                     </div>
-                      <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-                            <p>
-                                Desarrollado by Operaciones Mantos Group.
-                                <br>
-                                Todos los derechos reservado.
-                            </p>
-                        </div>
+        </div>
+        <footer>
+            <div class="container-fluid lemon">
+                <hr/>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                        2018
+                        <li class="fa fa-copyright">
+                        </li>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                        <p>
+                            Desarrollado by Operaciones Mantos Group.
+                            <br/>
+                            Todos los derechos reservado.
+                        </p>
                     </div>
                 </div>
-            </footer>
-        </body>
-       
+            </div>
+        </footer>
+    </body>
 </html>
