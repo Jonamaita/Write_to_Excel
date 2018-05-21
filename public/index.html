@@ -30,77 +30,80 @@
                 </div>
             </div>
         </div>
-        <div class="container" id="form">
+        <div class="container">
             <div class="row">
-                <div class="lemon text-center">
+                <div class="lemon text-center col-md-12 con-sm-12 col-xs-12">
                     <h4>
                         Llenar Formulario Para Trazabilidad
                     </h4>
                 </div>
-                <div class="lemon text-center ">
-                    <form  class="letra-formulario" id="form_1">
-                        <fieldset class="form-group">
-                            <h4>
-                                Tipo de Falla
-                            </h4>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico"/>
-                                    Electrico
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" name="problema" type="radio" value="Mecanico"/>
-                                    Mecanico
-                                </label>
-                            </div>
-                        </fieldset>
-                        <div class="form-group" id="text_comentario">
-                            <label for="comentario_problema">
-                                Comentario de la falla:
+            </div>
+            <div class="row">
+                <form  class="letra-formulario lemon text-center col-md-12 col-sm12 col-xs-12" id="form_1">
+                    <div class="form-group ">
+                        <h4>
+                            Tipo de Falla
+                        </h4>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico"/>
+                                Electrico
                             </label>
-                            <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" rows="3" id="comentario" placeholder="Escriba un comentario de la falla"></textarea>
                         </div>
-                        <input class="letra-negra" type="button" value="Enviar" id="enviar-form"/>
-                    </form>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" name="problema" type="radio" value="Mecanico"/>
+                                Mecanico
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group form-group " id="text_comentario">
+                        <label for="comentario">
+                            Comentario de la falla:
+                        </label>
+                        <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" rows="3" id="comentario" placeholder="Escriba un comentario de la falla"></textarea>
+                    </div>
+                    <input class="letra-negra" type="button" value="Enviar" id="enviar-form"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="no-visible col-md-12 col-sm-12 col-xs-12" id="form_success_error">
+                <h4 class="lemon text-center" id="res_form">
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="lemon text-center hide animated fadeIn col-md-12 col-sm-12 col-xs-12" id="run_tf">
+                <h2>
+                    Oprima el boton cuando la falla este resuelta
+                </h2>
+                <a href="/falla_success" class="btn btn-success">
+                    Falla Resuelta
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container lemon">
+            <hr/>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    2018
+                    <li class="fa fa-copyright">
+                    </li>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <p>
+                        Desarrollado by Operaciones Mantos Group.
+                        <br/>
+                        Todos los derechos reservado.
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="no-visible" id="form_success_error">
-                    <h4 class="lemon text-center" id="res_form">
-                    </h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="lemon text-center hide animated fadeIn" id="run_tf">
-                <h2>Oprima el boton cuando la falla este resuelta</h2>
-                <a href="/falla_success" class="btn btn-success">Falla Resuelta</a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        <footer>
-            <div class="container-fluid lemon">
-                <hr/>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-                        2018
-                        <li class="fa fa-copyright">
-                        </li>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-                        <p>
-                            Desarrollado by Operaciones Mantos Group.
-                            <br/>
-                            Todos los derechos reservado.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
+    </footer>
+</body>
 </html>

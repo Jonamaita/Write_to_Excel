@@ -1,7 +1,13 @@
 body{
   background-color: currentColor;
+  margin: 0;
+  margin-bottom: 40px;
 
   
+}
+html {
+  min-height: 100%;
+  position: relative;
 }
 
 .lemon{
@@ -28,3 +34,14 @@ body{
 .incorrecto{
 	border:2px red solid;
 }
+footer{
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  
+
+
+}
+

@@ -1,16 +1,13 @@
 $(document).ready(function() {
     console.log("jquery On");
     $("#enviar-form").click(function() {
-       validar_form();
-       
-        
+        validar_form();
     });
 });
 
 function validar_form() {
-        var expreg=/\S/;
-        var valTextArea=document.getElementById('comentario').value;
-
+    var expreg = /\S/;
+    var valTextArea = document.getElementById('comentario').value;
     if (!valTextArea.match(expreg)) {
         alert("El campo de comentario no puede estar vacio.");
         $("#comentario").focus();
@@ -29,13 +26,12 @@ function validar_form() {
                 document.getElementById("form_1").reset();
                 $("#run_tf").removeClass("hide");
                 //document.getElementById("comentario").disabled = true;
-                setTimeout(function(){
-                    $("#comentario").addClass("hide");
-                },1000);
-               
-
-              
-                
+                //document.getElementById("enviar-form").disabled = true;
+                $("#text_comentario").addClass("animated fadeOutUp");
+                $("#enviar-form").addClass("animated fadeOutUp");
+                setTimeout(function() {
+                    $("#text_comentario").toggle("slow");
+                }, 1000);
             },
             error: function(data) {
                 //funcion que se ejecutara en caso de que se haya producido un fallo

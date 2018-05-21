@@ -25,12 +25,15 @@ app.post("/datos_track", function(req, res) {
     res.send('form_sucess');
 });
 ///////////
-
+app.post("/falla_resuelta", function(req, res) {
+    res.sendFile(__dirname + '/public/falla_resuelta.html');
+})
+////////////////////////
 //Escucha servidor
-app.listen(5555,"192.168.1.114", () => {
+app.listen(5555, () => {
     console.log("Servidor On");
 });
-/////////////////////////
+/////////Escribir en excel problema y comentario////////////////
 function escrbir_excel(problema, comentario) {
     workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
         var worksheet = workbook.getWorksheet("track_mantenimiento");
@@ -52,3 +55,5 @@ function escrbir_excel(problema, comentario) {
         return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
     })
 }
+/////////////////////////////////////////////////////////////////
+/////////////////////Escribir en excel hora de falla resuelta///
