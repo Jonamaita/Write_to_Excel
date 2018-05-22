@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log("jquery On");
+    //console.log("jquery On");
     $("#enviar-form").click(function() {
         validar_form();
     });

@@ -24,9 +24,15 @@ app.post("/datos_track", function(req, res) {
     //res.sendFile(__dirname + '/public/succes.html');
     res.send('form_sucess');
 });
-///////////
-app.post("/falla_resuelta", function(req, res) {
-    res.sendFile(__dirname + '/public/falla_resuelta.html');
+////Enviar Hora de falla resuelta///////
+app.get("/falla_resuelta", function(req, res) {
+    escribir_falla(function(falla_resuelta) {
+        if (falla_resuelta == true) {
+            res.sendFile(__dirname + '/public/falla_resuelta.html');
+        } else {
+            console.log("Debe registrar un problema");
+        }
+    })
 })
 ////////////////////////
 //Escucha servidor
@@ -57,3 +63,38 @@ function escrbir_excel(problema, comentario) {
 }
 /////////////////////////////////////////////////////////////////
 /////////////////////Escribir en excel la hora de falla resuelta///
+var escribir_falla = function(callback) {
+    workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
+        var worksheet = workbook.getWorksheet("track_mantenimiento");
+        var i = 0;
+        var valores = [];
+        worksheet.eachRow(function(row, index, arreglo) {
+            console.log(index);
+            //console.log(row.values);
+            valores[index] = row.values;
+            i = index;
+        });
+        //console.log(valores[2]);
+        //console.log(valores[1][1]);
+        //console.log(valores[6][5]);
+        if (valores[i][5] == undefined) {
+            var row = worksheet.getRow(i)
+            var hora=obtener_hora();
+            console.log(hora);
+            row.getCell(5).value = hora;
+            console.log("Se registro hora");
+            workbook.xlsx.writeFile('track_mantenimiento.xlsx');
+            callback(true);
+        } else {
+            console.log("Debe ingresar un problema primeramente");
+            callback(false);
+        }
+    });
+}
+//Función obtener Hora///
+function obtener_hora() {
+    var date = new Date();
+    hora = date.getHours() + ":" + date.getMinutes();
+    return (hora);
+}
+///////
