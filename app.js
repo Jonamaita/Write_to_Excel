@@ -40,7 +40,7 @@ function escrbir_excel(problema, comentario) {
         var i = 0;
         worksheet.eachRow(function(row, index, arreglo) {
             //console.log(index);
-            //console.log(row.value);
+            //console.log(row.values);
             i = index;
         });
         var row = worksheet.getRow(i + 1);
@@ -53,7 +53,7 @@ function escrbir_excel(problema, comentario) {
         console.log(hora);
         //row.commit();
         return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
-    })
+    });
 }
 /////////////////////////////////////////////////////////////////
-/////////////////////Escribir en excel hora de falla resuelta///
+/////////////////////Escribir en excel la hora de falla resuelta///
