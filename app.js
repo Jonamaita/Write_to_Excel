@@ -25,12 +25,14 @@ app.post("/datos_track", function(req, res) {
     res.send('form_sucess');
 });
 ////Enviar Hora de falla resuelta///////
-app.get("/falla_resuelta", function(req, res) {
+app.post("/falla_resuelta", function(req, res) {
     escribir_falla(function(falla_resuelta) {
         if (falla_resuelta == true) {
-            res.sendFile(__dirname + '/public/falla_resuelta.html');
+            //res.sendFile(__dirname + '/public/falla_resuelta.html');
+            res.send(true);
         } else {
             console.log("Debe registrar un problema");
+            res.send(false);
         }
     })
 })
@@ -69,7 +71,7 @@ var escribir_falla = function(callback) {
         var i = 0;
         var valores = [];
         worksheet.eachRow(function(row, index, arreglo) {
-            console.log(index);
+          //  console.log(index);
             //console.log(row.values);
             valores[index] = row.values;
             i = index;

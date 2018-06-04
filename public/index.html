@@ -33,14 +33,15 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="lemon text-center col-md-12 con-sm-12 col-xs-12">
-                    <h4>
-                        Llenar Formulario Para Trazabilidad
-                    </h4>
+                <div class="lemon text-center col-md-12 con-sm-12 col-xs-12" id="">
+                  
                 </div>
             </div>
             <div class="row">
                 <form  class="letra-formulario lemon text-center col-md-12 col-sm12 col-xs-12" id="form_1">
+                      <h4>
+                        Llenar Formulario Para Trazabilidad
+                    </h4>
                     <div class="form-group ">
                         <h4>
                             Tipo de Falla
@@ -81,10 +82,18 @@
                 <h2>
                     Oprima el boton cuando la falla este resuelta
                 </h2>
-                <a href="/falla_resuelta" class="btn btn-success">
+                <btn class="btn btn-success" id="btn_falla_resuelta">
                     Falla Resuelta
-                </a>
+                </btn>
             </div>
+        </div>
+        <div class="row">
+            <div class="hide animated fadeIn col-md-12 col-sm-12 col-xs-12" id="div_falla">
+                <h3 class="lemon text-center" id="falla_resuelta">
+                    
+                </h3>
+            </div>
+            
         </div>
     </div>
     <footer>

@@ -3,6 +3,9 @@ $(document).ready(function() {
     $("#enviar-form").click(function() {
         validar_form();
     });
+    $("#btn_falla_resuelta").click(function(){
+        hora_falla_resuelta();
+    })
 });
 
 function validar_form() {
@@ -29,9 +32,11 @@ function validar_form() {
                 //document.getElementById("enviar-form").disabled = true;
                 $("#text_comentario").addClass("animated fadeOutUp");
                 $("#enviar-form").addClass("animated fadeOutUp");
+               // console.log(data); // Muestra lo que envia el servidor
                 setTimeout(function() {
-                    $("#text_comentario").toggle("slow");
+                    $("#text_comentario,#form_1").toggle("slow");
                 }, 1000);
+
             },
             error: function(data) {
                 //funcion que se ejecutara en caso de que se haya producido un fallo
@@ -43,3 +48,32 @@ function validar_form() {
         });
     }
 };
+
+function  hora_falla_resuelta(){
+    $.ajax({
+        type:"POST",
+        url:"/falla_resuelta",
+        success:function(data){
+            if(data==true){
+                console.log(data);
+            $("#div_falla").removeClass("hide");
+            $("#falla_resuelta").addClass("correcto").html("Se ha registrado conrrectamente la hora en la que se resolvió la falla. Seras redirigido a la pagina principal.");
+            $("#form_success_error,#run_tf,#form_success_errors").toggle("slow");
+            
+
+            }
+           
+   
+            setTimeout(function() {
+                    location.reload();
+                }, 2000);
+        },
+        error:function(){
+
+        }
+    })
+
+
+
+
+}
