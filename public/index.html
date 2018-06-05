@@ -38,28 +38,34 @@
                 </div>
             </div>
             <div class="row">
-                <form  class="letra-formulario lemon text-center col-md-12 col-sm12 col-xs-12" id="form_1">
+                <form  class="letra-formulario lemon text-center col-md-12 col-sm12 col-xs-12 form-horizontal" id="form_1">
                       <h4>
                         Llenar Formulario Para Trazabilidad
                     </h4>
-                    <div class="form-group ">
+                    <div class="form-group">
                         <h4>
-                            Tipo de Falla
+                            Seleccione El Tipo de Falla
                         </h4>
                         <div class="form-check">
-                            <label class="form-check-label">
-                                <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico"/>
-                                Electrico
+                            <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico" id="checkElectrico"/>
+                            <label class="form-check-label" for="checkElectrico">
+                            Electrico
                             </label>
                         </div>
                         <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" name="problema" type="radio" value="Mecanico"/>
-                                Mecanico
+                            <input class="form-check-input" name="problema" type="radio" value="Mecanico" id="checkMecanico"/>
+                            <label class="form-check-label" for="checkMecanico">
+                            Mecanico
+                            </label>
+                        </div>
+                         <div class="form-check">
+                            <input class="form-check-input" name="problema" type="radio" value="Producción" id="checkProduccion"/> 
+                            <label class="form-check-label" for="checkProduccion">
+                            Producción
                             </label>
                         </div>
                     </div>
-                    <div class="form-group form-group " id="text_comentario">
+                    <div class="form-group" id="text_comentario">
                         <label for="comentario">
                             Comentario de la falla:
                         </label>
