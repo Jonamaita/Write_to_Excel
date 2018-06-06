@@ -1,20 +1,31 @@
 $(document).ready(function() {
     //console.log("jquery On");
+    /////Enviar Datos form ///////////
     $("#enviar-form").click(function() {
         validar_form();
     });
-    $("#btn_falla_resuelta").click(function(){
+    //////////////////////////////////
+    $("#btn_falla_resuelta").click(function() {
         hora_falla_resuelta();
     })
+    //////////////////////////////////
+    $("#checkProduccion").click(function() {
+        enable_produccion();
+    })
+    $("#checkElectrico,#checkMecanico").click(function() {
+        enable_produccion();
+    })
+    /////////////////////////////////
 });
 
 function validar_form() {
     var expreg = /\S/;
     var valTextArea = document.getElementById('comentario').value;
-    if (!valTextArea.match(expreg)) {
+    var checkProduccion = $("#checkProduccion").prop('checked');
+    if (!valTextArea.match(expreg) && checkProduccion != true) { // Si esta seleccionado el checbox producción no es necesario comentario
         alert("El campo de comentario no puede estar vacio.");
         $("#comentario").focus();
-        $("#comentario").addClass("incorrecto")
+        //$("#comentario").addClass("incorrecto")
         return false;
     } else {
         $.ajax({
@@ -23,7 +34,7 @@ function validar_form() {
             data: $('#form_1').serialize(),
             success: function(data) {
                 //funcion que se ejecutara en caso de que todo vaya bien
-                $('#res_form').addClass('correcto');
+                //$('#res_form').addClass('correcto');
                 $('#form_success_error').removeClass('no-visible');
                 $('#res_form').html("Los datos se enviaron correctamente");
                 document.getElementById("form_1").reset();
@@ -32,11 +43,10 @@ function validar_form() {
                 //document.getElementById("enviar-form").disabled = true;
                 $("#text_comentario").addClass("animated fadeOutUp");
                 $("#enviar-form").addClass("animated fadeOutUp");
-               // console.log(data); // Muestra lo que envia el servidor
+                // console.log(data); // Muestra lo que envia el servidor
                 setTimeout(function() {
                     $("#text_comentario,#form_1").toggle("slow");
                 }, 1000);
-
             },
             error: function(data) {
                 //funcion que se ejecutara en caso de que se haya producido un fallo
@@ -49,31 +59,40 @@ function validar_form() {
     }
 };
 
-function  hora_falla_resuelta(){
+function hora_falla_resuelta() {
     $.ajax({
-        type:"POST",
-        url:"/falla_resuelta",
-        success:function(data){
-            if(data==true){
+        type: "POST",
+        url: "/falla_resuelta",
+        success: function(data) {
+            if (data == true) {
                 console.log(data);
-            $("#div_falla").removeClass("hide");
-            $("#falla_resuelta").addClass("correcto").html("Se ha registrado conrrectamente la hora en la que se resolvió la falla. Seras redirigido a la pagina principal.");
-            $("#form_success_error,#run_tf,#form_success_errors").toggle("slow");
-            
-
-            }
-           
-   
-            setTimeout(function() {
+                $("#div_falla").removeClass("hide");
+                $("#falla_resuelta").addClass("correcto").html("Se ha registrado conrrectamente la hora en la que se resolvió la falla. Seras redirigido a la pagina principal.");
+                $("#form_success_error,#run_tf,#form_success_errors").toggle("slow");
+                setTimeout(function() {
                     location.reload();
                 }, 2000);
+            } else {
+                $("#falla_resuelta").addClass("correcto").html("No se ha registrado la hora, posiblemente no se ha registrado una falla. Seras redirigido a la pagina principal.");
+                $("#form_success_error,#run_tf,#form_success_errors").toggle("slow");
+                setTimeout(function() {
+                    location.reload();
+                }, 2000);
+            }
         },
-        error:function(){
-
-        }
+        error: function() {}
     })
-
-
-
-
 }
+////////////////////Habilar opciones de producción/////////////////////
+function enable_produccion() {
+    if (form_1.checkProduccion.checked) {
+        $("#listProduccion").removeClass("hide");
+        $("#checkGoteros").prop("checked", true);
+        $("#checkGoteros,#checkRuedas,#checkTroquelado,#checkFilm,#checkAjusteMecanico").attr("disabled", false);
+    } else {
+        $("#listProduccion").addClass("hide");
+        $("#checkGoteros,#checkRuedas,#checkTroquelado,#checkFilm,#checkAjusteMecanico").prop("checked", false);
+        $("#checkGoteros,#checkRuedas,#checkTroquelado,#checkFilm,#checkAjusteMecanico").attr("disabled", true);
+    }
+}
+/////////////////////////////////////////////

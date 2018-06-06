@@ -10,39 +10,67 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-//pagina principal
+///////////////pagina principal/////////////////////////
 app.get("/", function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
-//Petición formulario
+//////////////////Petición formulario///////////////////
 app.post("/datos_track", function(req, res) {
     //console.log(req.query); //query cuando es get y body cuando es post
-    console.log(req.body.comentario);
-    var problema = req.body.problema;
+    //console.log(req.body.comentario);
+    var problema_produccion=req.body.problema_produccion;
+    if(problema_produccion!=undefined){ // Si el problema es de producción se concatena los datos
+        var problema = req.body.problema+" ("+problema_produccion+")";
+    }else{
+        var problema = req.body.problema
+    }
     var comentario = req.body.comentario;
-    escrbir_excel(problema, comentario);
+    escrbir_falla_excel(problema, comentario);
     //res.sendFile(__dirname + '/public/succes.html');
     res.send('form_sucess');
 });
-////Enviar Hora de falla resuelta///////
+////Enviar Hora de falla resuelta mediante post///////
 app.post("/falla_resuelta", function(req, res) {
-    escribir_falla(function(falla_resuelta) {
+    escribir_hora(function(falla_resuelta) {
         if (falla_resuelta == true) {
             //res.sendFile(__dirname + '/public/falla_resuelta.html');
+            console.log("Se registro hora");
             res.send(true);
         } else {
-            console.log("Debe registrar un problema");
+            console.log("No se ingreso un problema");
             res.send(false);
         }
     })
 })
-////////////////////////
+////////////////////////////////////////////////////
+///////Peteiciones codigo QR mediante GET//////////////////////
+app.get("/datos_track", function(req, res) {
+    //console.log(req.query); //query cuando es get y body cuando es post
+    var problema_produccion=req.query.problema_produccion;
+    if(problema_produccion!=undefined){
+        var problema = req.query.problema+" ("+problema_produccion+")";
+    }else{
+        var problema = req.query.problema
+    }
+    var comentario = req.query.comentario;
+    escrbir_falla_excel(problema, comentario);
+    res.sendFile(__dirname + '/public/QrSucess.html');
+   // res.send('form_sucess');
+});
+//////////////QR Falla Resuelta///////////////////////////
+app.get("/falla_resuelta", function(req, res) { // Petición get para falla resuelta. Para codigo QR.
+  res.sendFile(__dirname + '/public/hora_falla_resuelta.html'); // dentro de este html, se ejecuta jquery para reaizar petición post para hora de la falla resuelta
+})
+
+////////////////////////////////////////////
+
+///////////////////////
 //Escucha servidor
 app.listen(5555, () => {
     console.log("Servidor On");
 });
 /////////Escribir en excel problema y comentario////////////////
-function escrbir_excel(problema, comentario) {
+function escrbir_falla_excel(problema, comentario) {
     workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
         var worksheet = workbook.getWorksheet("track_mantenimiento");
         var i = 0;
@@ -65,7 +93,7 @@ function escrbir_excel(problema, comentario) {
 }
 /////////////////////////////////////////////////////////////////
 /////////////////////Escribir en excel la hora de falla resuelta///
-var escribir_falla = function(callback) {
+var escribir_hora = function(callback) {
     workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
         var worksheet = workbook.getWorksheet("track_mantenimiento");
         var i = 0;
@@ -84,19 +112,19 @@ var escribir_falla = function(callback) {
             var hora=obtener_hora();
             console.log(hora);
             row.getCell(5).value = hora;
-            console.log("Se registro hora");
+            
             workbook.xlsx.writeFile('track_mantenimiento.xlsx');
             callback(true);
         } else {
-            console.log("Debe ingresar un problema primeramente");
+          
             callback(false);
         }
     });
 }
-//Función obtener Hora///
+//////////Función obtener Hora/////
 function obtener_hora() {
     var date = new Date();
     hora = date.getHours() + ":" + date.getMinutes();
     return (hora);
 }
-///////
+/////////////////////////////////

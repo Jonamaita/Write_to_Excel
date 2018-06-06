@@ -10,10 +10,14 @@
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600" rel="stylesheet"/>
         <link href="/css/main.css" rel="stylesheet" type="text/css"/>
         <link href="/css/animate.css" rel="stylesheet" type="text/css"/>
-        <script src="https://use.fontawesome.com/66786629b2.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/javascript.js"></script>
+        <script src="https://use.fontawesome.com/66786629b2.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+        <script src="/javascript.js" type="text/javascript">
+        </script>
         <link href="/imgs/logo_mantos.png" rel="icon" type="image/png">
+        </link>
     </head>
     <body>
         <div class="container-fluid" id="head">
@@ -34,92 +38,116 @@
         <div class="container">
             <div class="row">
                 <div class="lemon text-center col-md-12 con-sm-12 col-xs-12" id="">
-                  
                 </div>
             </div>
             <div class="row">
-                <form  class="letra-formulario lemon text-center col-md-12 col-sm12 col-xs-12 form-horizontal" id="form_1">
-                      <h4>
+                <form class="letra-formulario lemon text-center col-md-12 col-sm12 col-xs-12" id="form_1">
+                    <h3>
                         Llenar Formulario Para Trazabilidad
-                    </h4>
-                    <div class="form-group">
-                        <h4>
+                    </h3>
+                    <div class="form-group ">
+                        <h3>
                             Seleccione El Tipo de Falla
-                        </h4>
+                        </h3>
                         <div class="form-check">
-                            <input checked="" class="form-check-input" name="problema" type="radio" value="Electrico" id="checkElectrico"/>
+                            <input checked="" class="form-check-input" id="checkElectrico" name="problema" type="radio" value="Electrico"/>
                             <label class="form-check-label" for="checkElectrico">
-                            Electrico
+                                Electrico
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="problema" type="radio" value="Mecanico" id="checkMecanico"/>
+                            <input class="form-check-input" id="checkMecanico" name="problema" type="radio" value="Mecanico"/>
                             <label class="form-check-label" for="checkMecanico">
-                            Mecanico
+                                Mecanico
                             </label>
                         </div>
-                         <div class="form-check">
-                            <input class="form-check-input" name="problema" type="radio" value="Producción" id="checkProduccion"/> 
+                        <div class="form-check">
+                            <input class="form-check-input" id="checkProduccion" name="problema" type="radio" value="Producción"/>
                             <label class="form-check-label" for="checkProduccion">
-                            Producción
+                                Producción
                             </label>
                         </div>
+                    </div>
+                    <div class="form-group hide animated fadeIn" id="listProduccion">
+                        <div class="form-check checkbox-inline">
+                            <input class="form-check-input" id="checkGoteros" name="problema_produccion" type="radio" value="Goteros">
+                            <label class="form-check-label" for="checkGoteros">Goteros</label>
+                            
+                        </div>
+                        <div class="form-check checkbox-inline">
+                            <input class="form-check-input" id="checkRuedas" name="problema_produccion" type="radio" value="Ruedas">
+                            <label class="form-check-label" for="checkRuedas">Ruedas</label>
+                            
+                        </div>
+                        <div class="form-check checkbox-inline">
+                            <input class="form-check-input" id="checkTroquelado" name="problema_produccion" type="radio" value="Troquelado">
+                            <label class="form-check-label" for="checkTroquelado">Troquelado</label>
+                            
+                        </div>
+                        <div class="form-check checkbox-inline">
+                            <input class="form-check-input" id="checkFilm" name="problema_produccion" type="radio" value="Film">
+                            <label class="form-check-label" for="checkFilm">Film</label>
+                            
+                        </div>
+                            <div class="form-check checkbox-inline">
+                            <input class="form-check-input" id="checkAjusteMecanico" name="problema_produccion" type="radio" value="Ajuste Mecanico">
+                            <label class="form-check-label" for="checkAjusteMecanico">Ajuste Mecanico</label>
+                            
+                            </div>
+                        
                     </div>
                     <div class="form-group" id="text_comentario">
-                        <label for="comentario">
+                        <label class="letra-size" for="comentario">
                             Comentario de la falla:
                         </label>
-                        <textarea class="letra-negra form-control" cols="10" maxlength="200" name="comentario" rows="3" id="comentario" placeholder="Escriba un comentario de la falla"></textarea>
+                        <textarea class="letra-negra form-control" cols="10" id="comentario" maxlength="200" name="comentario" placeholder="Escriba un comentario de la falla" rows="3"></textarea>
                     </div>
-                    <input class="letra-negra" type="button" value="Enviar" id="enviar-form"/>
+                    <input class="letra-negra" id="enviar-form" type="button" value="Enviar"/>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="no-visible col-md-12 col-sm-12 col-xs-12" id="form_success_error">
-                <h4 class="lemon text-center" id="res_form">
-                </h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="lemon text-center hide animated fadeIn col-md-12 col-sm-12 col-xs-12" id="run_tf">
-                <h2>
-                    Oprima el boton cuando la falla este resuelta
-                </h2>
-                <btn class="btn btn-success" id="btn_falla_resuelta">
-                    Falla Resuelta
-                </btn>
-            </div>
-        </div>
-        <div class="row">
-            <div class="hide animated fadeIn col-md-12 col-sm-12 col-xs-12" id="div_falla">
-                <h3 class="lemon text-center" id="falla_resuelta">
-                    
-                </h3>
-            </div>
-            
-        </div>
-    </div>
-    <footer>
-        <div class="container lemon">
-            <hr/>
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-                    2018
-                    <li class="fa fa-copyright">
-                    </li>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-                    <p>
-                        Desarrollado by Operaciones Mantos Group.
-                        <br/>
-                        Todos los derechos reservado.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
+    </body>
 </html>
+<div class="container">
+    <div class="row">
+        <div class="no-visible col-md-12 col-sm-12 col-xs-12" id="form_success_error">
+            <h4 class="lemon text-center" id="res_form">
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="lemon text-center hide animated fadeIn col-md-12 col-sm-12 col-xs-12" id="run_tf">
+            <h2>
+                Oprima el boton cuando la falla este resuelta
+            </h2>
+            <btn class="btn btn-success" id="btn_falla_resuelta">
+                Falla Resuelta
+            </btn>
+        </div>
+    </div>
+    <div class="row">
+        <div class="hide animated fadeIn col-md-12 col-sm-12 col-xs-12" id="div_falla">
+            <h3 class="lemon text-center" id="falla_resuelta">
+            </h3>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="container lemon">
+        <hr/>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                2018
+                <li class="fa fa-copyright">
+                </li>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                <p>
+                    Desarrollado by Operaciones Mantos Group.
+                    <br/>
+                    Todos los derechos reservado.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

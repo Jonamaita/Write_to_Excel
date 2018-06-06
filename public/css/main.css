@@ -36,9 +36,17 @@ padding:0px 0px 60px 0px;
 }
 .correcto{
 	border: 2px green solid;
+	padding: 10px 10px 10px 10px;
 }
 .incorrecto{
 	border:2px red solid;
+	padding: 10px 10px 10px 10px;
+}
+.letra-formulario{
+	font-size:16px;
+}
+.QrSucess{
+	padding: 100px 100px 0px 100px;
 }
 footer{
 
