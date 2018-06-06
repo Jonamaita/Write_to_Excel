@@ -25,9 +25,10 @@ app.post("/datos_track", function(req, res) {
         var problema = req.body.problema
     }
     var comentario = req.body.comentario;
-    escrbir_falla_excel(problema, comentario);
-    //res.sendFile(__dirname + '/public/succes.html');
-    res.send('form_sucess');
+    escrbir_falla_excel(comentario,problema,res);
+   
+    
+    
 });
 ////Enviar Hora de falla resuelta mediante post///////
 app.post("/falla_resuelta", function(req, res) {
@@ -70,8 +71,9 @@ app.listen(5555, () => {
     console.log("Servidor On");
 });
 /////////Escribir en excel problema y comentario////////////////
-function escrbir_falla_excel(problema, comentario) {
-    workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
+function escrbir_falla_excel(comentario,problema,res) {
+       
+        workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function(){
         var worksheet = workbook.getWorksheet("track_mantenimiento");
         var i = 0;
         worksheet.eachRow(function(row, index, arreglo) {
@@ -88,8 +90,18 @@ function escrbir_falla_excel(problema, comentario) {
         row.getCell(4).value = hora;
         console.log(hora);
         //row.commit();
-        return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
-    });
+         return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
+         }).then(function(){
+           
+            res.send(true); // Envia true a la petición si el archivo se pudo escribir de manera correcta.
+
+         }).catch(error => {
+            console.error(error);//Envia false a la petición si el archivo se pudo escribir de manera correcta.
+            res.send(false);
+           
+            
+        });
+        
 }
 /////////////////////////////////////////////////////////////////
 /////////////////////Escribir en excel la hora de falla resuelta///

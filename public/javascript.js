@@ -33,26 +33,33 @@ function validar_form() {
             url: "/datos_track",
             data: $('#form_1').serialize(),
             success: function(data) {
-                //funcion que se ejecutara en caso de que todo vaya bien
-                //$('#res_form').addClass('correcto');
-                $('#form_success_error').removeClass('no-visible');
-                $('#res_form').html("Los datos se enviaron correctamente");
-                document.getElementById("form_1").reset();
-                $("#run_tf").removeClass("hide");
-                //document.getElementById("comentario").disabled = true;
-                //document.getElementById("enviar-form").disabled = true;
-                $("#text_comentario").addClass("animated fadeOutUp");
-                $("#enviar-form").addClass("animated fadeOutUp");
-                // console.log(data); // Muestra lo que envia el servidor
-                setTimeout(function() {
-                    $("#text_comentario,#form_1").toggle("slow");
-                }, 1000);
+                console.log(data);
+                if (data != false) {
+                    //funcion que se ejecutara en caso de que todo vaya bien
+                    //$('#res_form').addClass('correcto');
+                    $('#form_success_error').removeClass('no-visible');
+                    $('#res_form').html("Los datos se enviaron correctamente.");
+                    document.getElementById("form_1").reset();
+                    $("#run_tf").removeClass("hide");
+                    //document.getElementById("comentario").disabled = true;
+                    //document.getElementById("enviar-form").disabled = true;
+                    $("#text_comentario").addClass("animated fadeOutUp");
+                    $("#enviar-form").addClass("animated fadeOutUp");
+                    // console.log(data); // Muestra lo que envia el servidor
+                    setTimeout(function() {
+                        $("#text_comentario,#form_1").toggle("slow");
+                    }, 1000);
+                } else {
+                    $('#form_success_error').removeClass('no-visible');
+                    $('#res_form').html("Los datos no se pudieron escribir correctamente, intente nuevamente.");
+                    document.getElementById("form_1").reset();
+                }
             },
             error: function(data) {
-                //funcion que se ejecutara en caso de que se haya producido un fallo
+                //funcion que se ejecutara en caso de que se haya producido un fallo en la petición
                 $('#res_form').addClass('incorrecto');
                 $('#form_success_error').removeClass('no-visible');
-                $('#res_form').html("Los datos no se enviaron correctamente, intente nuevamente");
+                $('#res_form').html("Los datos no se enviaron correctamente, intente nuevamente.");
                 document.getElementById("form_1").reset();
             }
         });
@@ -64,8 +71,8 @@ function hora_falla_resuelta() {
         type: "POST",
         url: "/falla_resuelta",
         success: function(data) {
+            //console.log(data);
             if (data == true) {
-                console.log(data);
                 $("#div_falla").removeClass("hide");
                 $("#falla_resuelta").addClass("correcto").html("Se ha registrado conrrectamente la hora en la que se resolvió la falla. Seras redirigido a la pagina principal.");
                 $("#form_success_error,#run_tf,#form_success_errors").toggle("slow");
