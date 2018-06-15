@@ -33,12 +33,12 @@ function validar_form() {
             url: "/datos_track",
             data: $('#form_1').serialize(),
             success: function(data) {
-                console.log(data);
+               // console.log(data);
                 if (data != false) {
                     //funcion que se ejecutara en caso de que todo vaya bien
                     //$('#res_form').addClass('correcto');
                     $('#form_success_error').removeClass('no-visible');
-                    $('#res_form').html("Los datos se enviaron correctamente.");
+                    $('#res_form').text("Los datos se enviaron correctamente.");
                     document.getElementById("form_1").reset();
                     $("#run_tf").removeClass("hide");
                     //document.getElementById("comentario").disabled = true;
@@ -51,7 +51,7 @@ function validar_form() {
                     }, 1000);
                 } else {
                     $('#form_success_error').removeClass('no-visible');
-                    $('#res_form').html("Los datos no se pudieron escribir correctamente, intente nuevamente.");
+                    $('#res_form').text("Los datos no se pudieron escribir correctamente, intente nuevamente.");
                     document.getElementById("form_1").reset();
                 }
             },
@@ -59,7 +59,7 @@ function validar_form() {
                 //funcion que se ejecutara en caso de que se haya producido un fallo en la petición
                 $('#res_form').addClass('incorrecto');
                 $('#form_success_error').removeClass('no-visible');
-                $('#res_form').html("Los datos no se enviaron correctamente, intente nuevamente.");
+                $('#res_form').text("Los datos no se enviaron correctamente, intente nuevamente.");
                 document.getElementById("form_1").reset();
             }
         });
@@ -79,15 +79,27 @@ function hora_falla_resuelta() {
                 setTimeout(function() {
                     location.reload();
                 }, 2000);
-            } else {
-                $("#falla_resuelta").addClass("correcto").html("No se ha registrado la hora, posiblemente no se ha registrado una falla. Seras redirigido a la pagina principal.");
-                $("#form_success_error,#run_tf,#form_success_errors").toggle("slow");
+            } else if(data==false){
+                $("#div_falla").removeClass("hide");
+                $("#text_comentario,#form_1,#run_tf").toggle("slow");
+                $("#falla_resuelta").html("No se ha registrado la hora, posiblemente no se ha registrado una falla. Intente nuevamente.");
                 setTimeout(function() {
                     location.reload();
+
                 }, 2000);
+            }else{
+                alert("Los datos no se pudieron escribir correctamente, intente nuevamente.");
+                setTimeout(function() {
+                    location.reload();
+
+                }, 100);
+                
             }
         },
-        error: function() {}
+        error: function() {
+            //console.log("Error petición del servidor POST");
+           $("#res_falla").addClass("incorrecto").html("Error en la petición al servidor.");
+        }
     })
 }
 ////////////////////Habilar opciones de producción/////////////////////

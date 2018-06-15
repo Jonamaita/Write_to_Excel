@@ -17,7 +17,7 @@ app.get("/", function(req, res) {
 //////////////////Petición formulario///////////////////
 app.post("/datos_track", function(req, res) {
     //console.log(req.query); //query cuando es get y body cuando es post
-    //console.log(req.body.comentario);
+    //console.log(req.body);
     var problema_produccion=req.body.problema_produccion;
     if(problema_produccion!=undefined){ // Si el problema es de producción se concatena los datos
         var problema = req.body.problema+" ("+problema_produccion+")";
@@ -32,7 +32,8 @@ app.post("/datos_track", function(req, res) {
 });
 ////Enviar Hora de falla resuelta mediante post///////
 app.post("/falla_resuelta", function(req, res) {
-    escribir_hora(function(falla_resuelta) {
+   escribir_hora(res);
+   /* escribir_hora(function(falla_resuelta) {
         if (falla_resuelta == true) {
             //res.sendFile(__dirname + '/public/falla_resuelta.html');
             console.log("Se registro hora");
@@ -41,33 +42,34 @@ app.post("/falla_resuelta", function(req, res) {
             console.log("No se ingreso un problema");
             res.send(false);
         }
-    })
+    })*/
 })
 ////////////////////////////////////////////////////
 ///////Peteiciones codigo QR mediante GET//////////////////////
 app.get("/datos_track", function(req, res) {
     //console.log(req.query); //query cuando es get y body cuando es post
-    var problema_produccion=req.query.problema_produccion;
+    res.sendFile(__dirname + '/public/Qr_Sucess_Fail.html'); // dentro de este html, se ejecuta jquery para reaizar petición post para identificar falla
+
+   /* var problema_produccion=req.query.problema_produccion;
     if(problema_produccion!=undefined){
         var problema = req.query.problema+" ("+problema_produccion+")";
     }else{
         var problema = req.query.problema
     }
     var comentario = req.query.comentario;
-    escrbir_falla_excel(problema, comentario);
-    res.sendFile(__dirname + '/public/QrSucess.html');
-   // res.send('form_sucess');
+    escrbir_falla_excel(problema, comentario);*/
+     // res.send('form_sucess');
 });
 //////////////QR Falla Resuelta///////////////////////////
 app.get("/falla_resuelta", function(req, res) { // Petición get para falla resuelta. Para codigo QR.
-  res.sendFile(__dirname + '/public/hora_falla_resuelta.html'); // dentro de este html, se ejecuta jquery para reaizar petición post para hora de la falla resuelta
+  res.sendFile(__dirname + '/public/Qr_Falla_Resuelta.html'); // dentro de este html, se ejecuta jquery para reaizar petición post para hora de la falla resuelta
 })
 
 ////////////////////////////////////////////
 
 ///////////////////////
 //Escucha servidor
-app.listen(5555, () => {
+app.listen("192.168.1.116",5555, () => {
     console.log("Servidor On");
 });
 /////////Escribir en excel problema y comentario////////////////
@@ -105,7 +107,9 @@ function escrbir_falla_excel(comentario,problema,res) {
 }
 /////////////////////////////////////////////////////////////////
 /////////////////////Escribir en excel la hora de falla resuelta///
-var escribir_hora = function(callback) {
+ function escribir_hora(res) {
+    var a;
+    var hora;
     workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
         var worksheet = workbook.getWorksheet("track_mantenimiento");
         var i = 0;
@@ -119,18 +123,28 @@ var escribir_hora = function(callback) {
         //console.log(valores[2]);
         //console.log(valores[1][1]);
         //console.log(valores[6][5]);
+        hora=obtener_hora();
         if (valores[i][5] == undefined) {
             var row = worksheet.getRow(i)
-            var hora=obtener_hora();
-            console.log(hora);
+            //console.log(hora);
             row.getCell(5).value = hora;
-            
-            workbook.xlsx.writeFile('track_mantenimiento.xlsx');
-            callback(true);
-        } else {
-          
-            callback(false);
+            a=true;
+            return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
+           }else{
+            return a=false;
+           }
+    }).then(function(){
+        if(a!=false)
+        {
+            console.log("Se ha registrado la hora de la falla resuelta correctamente " + hora);
+        }else{
+            console.log("No Se ha registrado la hora de la falla resuelta " + hora);
         }
+        
+        res.send(a);
+    }).catch(error=>{
+        console.log(error);
+        res.send(error);
     });
 }
 //////////Función obtener Hora/////

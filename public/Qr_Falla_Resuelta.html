@@ -33,12 +33,11 @@
                 </div>
             </div>
         </div>
-        <div class="container QrSucess">
-            <div class="row ">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h4 class="lemon text-center" id="res_falla">
-                        
-                    </h4>
+        <div class="container Qr_Sucess_Fail">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center" id="div_res_falla">
+                    <h3 class="lemon animated fadeIn" id="res_falla">
+                    </h3>
                 </div>
             </div>
         </div>
@@ -70,18 +69,23 @@
         success: function(data) {
             console.log(data);
             if (data == true) {
-                console.log("Se registra hora falla");
-                $("#res_falla").addClass("correcto").html("Se ha registrado conrrectamente la hora en la que se resolvió la falla.");
-             } else {
-                console.log("No se registro hora de la falla, posiblemente no se registro un problema");
-                $("#res_falla").addClass("incorrecto").html("No se ha registrado la hora de falla resuelta, posiblemente no ha registrado un problema.");
-                
-              
+               $("#res_falla").addClass("correcto");
+               //$("#icono").addClass("fa fa-check fa-5x icon-sucess");
+               $("#res_falla").html("Se ha registrado conrrectamente la hora en la que se resolvió la falla. <i class=\"fa fa-check fa-2x icon-sucess\" id=\"icono\"  aria-hidden=\"true\"></i>");
+             } else if(data==false) {
+               // $("#icono").addClass("fa fa-close fa-5x icon-fail");
+               $("#res_falla").addClass("incorrecto");
+               $("#res_falla").html("No se ha registrado la hora de falla resuelta, posiblemente no ha registrado un problema. <i class=\"fa fa-close fa-2x icon-fail\" id=\"icono\"  aria-hidden=\"true\"></i>");
+                            
+            }else{
+                $("#res_falla").addClass("incorrecto");
+                $("#res_falla").html("No se ha registrado la hora de falla resuelta. Intente nuevamente. <i class=\"fa fa-close fa-2x icon-fail\" id=\"icono\"  aria-hidden=\"true\"></i>");
             }
         },
         error: function() {
-            console.log("Error petición del servidor POST")
-           $("#res_falla").addClass("incorrecto").html("Error en la petición al servidor.");
+           //console.log("Error petición del servidor POST");
+           $("#res_falla").addClass("incorrecto");
+           $("#res_falla").html("Error en la petición al servidor. <i class=\"fa fa-close fa-2x icon-fail\" id=\"icono\"  aria-hidden=\"true\"></i>");
         }
     })
     });
