@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser'); // Parser para recibir información del cliente http
 var Excel = require('exceljs'); // Modulo para escribir en excel
 var workbook = new Excel.Workbook(); // realizar una instancia
+var path="/home/jjmc/Dropbox/Trazanabilidad_Operaciones/track_mantenimiento.xlsx"
 // Arcivhos estaticos
 app.use(express.static(__dirname + '/public'));
 //body parser para el fromulario
@@ -69,13 +70,13 @@ app.get("/falla_resuelta", function(req, res) { // Petición get para falla resu
 
 ///////////////////////
 //Escucha servidor
-app.listen("192.168.1.116",5555, () => {
+app.listen(5555, () => {
     console.log("Servidor On");
 });
 /////////Escribir en excel problema y comentario////////////////
 function escrbir_falla_excel(comentario,problema,res) {
        
-        workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function(){
+        workbook.xlsx.readFile(path).then(function(){
         var worksheet = workbook.getWorksheet("track_mantenimiento");
         var i = 0;
         worksheet.eachRow(function(row, index, arreglo) {
@@ -92,7 +93,7 @@ function escrbir_falla_excel(comentario,problema,res) {
         row.getCell(4).value = hora;
         console.log(hora);
         //row.commit();
-         return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
+         return workbook.xlsx.writeFile(path);
          }).then(function(){
            
             res.send(true); // Envia true a la petición si el archivo se pudo escribir de manera correcta.
@@ -110,7 +111,7 @@ function escrbir_falla_excel(comentario,problema,res) {
  function escribir_hora(res) {
     var a;
     var hora;
-    workbook.xlsx.readFile('track_mantenimiento.xlsx').then(function() {
+    workbook.xlsx.readFile(path).then(function() {
         var worksheet = workbook.getWorksheet("track_mantenimiento");
         var i = 0;
         var valores = [];
@@ -129,7 +130,7 @@ function escrbir_falla_excel(comentario,problema,res) {
             //console.log(hora);
             row.getCell(5).value = hora;
             a=true;
-            return workbook.xlsx.writeFile('track_mantenimiento.xlsx');
+            return workbook.xlsx.writeFile(path);
            }else{
             return a=false;
            }
