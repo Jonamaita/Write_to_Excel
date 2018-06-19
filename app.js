@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser'); // Parser para recibir información del cliente http
 var Excel = require('exceljs'); // Modulo para escribir en excel
 var workbook = new Excel.Workbook(); // realizar una instancia
-var path="/home/jjmc/Dropbox/Trazanabilidad_Operaciones/track_mantenimiento.xlsx"
+var path="/home/jjmc/Dropbox/Trazabilidad_Operaciones/track_mantenimiento.xlsx"
 // Arcivhos estaticos
 app.use(express.static(__dirname + '/public'));
 //body parser para el fromulario
