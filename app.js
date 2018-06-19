@@ -89,7 +89,7 @@ function escrbir_falla_excel(comentario,problema,res) {
         row.getCell(2).value = comentario;
         var date = new Date();
         row.getCell(3).value = date;
-        hora = date.getHours() + ":" + date.getMinutes();
+        hora = obtener_hora();
         row.getCell(4).value = hora;
         console.log(hora);
         //row.commit();
@@ -151,7 +151,7 @@ function escrbir_falla_excel(comentario,problema,res) {
 //////////Función obtener Hora/////
 function obtener_hora() {
     var date = new Date();
-    hora = date.getHours() + ":" + date.getMinutes();
+    hora = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     return (hora);
 }
 /////////////////////////////////
