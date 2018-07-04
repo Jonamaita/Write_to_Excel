@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Track_Mantos
+        </title>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600" rel="stylesheet"/>
+        <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/animate.css" rel="stylesheet" type="text/css"/>
+        <script src="https://use.fontawesome.com/66786629b2.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+        <link href="/imgs/logo_mantos.png" rel="icon" type="image/png">
+        </link>
+    </head>
+    <body>
+        <div class="container-fluid" id="head">
+            <div class="row">
+                <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+                    <img class="logo" height="100" src="/imgs/logo-blanco.svg" width="100"/>
+                </div>
+                <div class="text-center col-md-10 col-sm-10 col-xs-12">
+                    <h1 class="lemon">
+                        <strong>
+                            Track Producción
+                        </strong>
+                        <hr/>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container Qr_Sucess_Fail">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center" id="div_res_falla">
+                    <h3 class="lemon animated fadeIn" id="res_falla">
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container lemon">
+                <hr/>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                        2018
+                        <li class="fa fa-copyright">
+                        </li>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                        <p>
+                            Desarrollado by Operaciones Mantos Group.
+                            <br/>
+                            Todos los derechos reservado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $.ajax({
+        type: "POST",
+        url: "/error",
+        success: function(data) {
+            console.log(data);
+            if (data == true) {
+               $("#res_falla").addClass("correcto");
+               //$("#icono").addClass("fa fa-check fa-5x icon-sucess");
+               $("#res_falla").html("Se ha registrado el ultimo problema como error de registro. <i class=\"fa fa-check fa-2x icon-sucess\" id=\"icono\"  aria-hidden=\"true\"></i>");
+             } else if(data==false) {
+               // $("#icono").addClass("fa fa-close fa-5x icon-fail");
+               $("#res_falla").addClass("incorrecto");
+               $("#res_falla").html("No es posible registrar un error en el problema,ya que, posiblemente no ha registrado un problema. <i class=\"fa fa-close fa-2x icon-fail\" id=\"icono\"  aria-hidden=\"true\"></i>");
+                            
+            }else{
+                $("#res_falla").addClass("incorrecto");
+                $("#res_falla").html("No se ha registrado el error. Intente nuevamente. <i class=\"fa fa-close fa-2x icon-fail\" id=\"icono\"  aria-hidden=\"true\"></i>");
+            }
+        },
+        error: function() {
+           //console.log("Error petición del servidor POST");
+           $("#res_falla").addClass("incorrecto");
+           $("#res_falla").html("Error en la petición al servidor. <i class=\"fa fa-close fa-2x icon-fail\" id=\"icono\"  aria-hidden=\"true\"></i>");
+        }
+    })
+    });
+    </script>
+</html>

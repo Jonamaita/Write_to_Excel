@@ -46,6 +46,14 @@ app.post("/falla_resuelta", function(req, res) {
     })*/
 })
 ////////////////////////////////////////////////////
+//////////Enviar error al ultimo problema registrado///////////
+app.post("/error", function(req, res) {
+   escribir_error(res);
+
+})
+
+
+///////////////////////////////////////////////////////////////
 ///////Peteiciones codigo QR mediante GET//////////////////////
 app.get("/datos_track", function(req, res) {
     //console.log(req.query); //query cuando es get y body cuando es post
@@ -66,8 +74,10 @@ app.get("/falla_resuelta", function(req, res) { // Petición get para falla resu
   res.sendFile(__dirname + '/public/Qr_Falla_Resuelta.html'); // dentro de este html, se ejecuta jquery para reaizar petición post para hora de la falla resuelta
 })
 
-////////////////////////////////////////////
-
+////////////QR FALLA ERROR////////////////////////////////
+app.get("/error", function(req, res) { // Petición get para falla resuelta. Para codigo QR.
+  res.sendFile(__dirname + '/public/Qr_Error.html'); // dentro de este html, se ejecuta jquery para reaizar petición post para escrbir error.
+})
 ///////////////////////
 //Escucha servidor
 app.listen(5555, () => {
@@ -148,6 +158,47 @@ function escrbir_falla_excel(comentario,problema,res) {
         res.send(error);
     });
 }
+/////////Escribir Error////////////
+ function escribir_error(res) {
+    var a;
+    var hora;
+    workbook.xlsx.readFile(path).then(function() {
+        var worksheet = workbook.getWorksheet("track_mantenimiento");
+        var i = 0;
+        var valores = [];
+        worksheet.eachRow(function(row, index, arreglo) {
+          //  console.log(index);
+            //console.log(row.values);
+            valores[index] = row.values;
+            i = index;
+        });
+        //console.log(valores[2]);
+        //console.log(valores[1][1]);
+        //console.log(valores[6][5]);
+        hora=obtener_hora();
+        if (valores[i][5] == undefined) {
+            var row = worksheet.getRow(i)
+            //console.log(hora);
+            row.getCell(5).value = "¡ ERROR !";
+            a=true;
+            return workbook.xlsx.writeFile(path);
+           }else{
+            return a=false;
+           }
+    }).then(function(){
+        if(a!=false)
+        {
+            console.log("Se ha registrado el problema como error de manera correctamente " + hora);
+        }else{
+            console.log("No Se ha registrado el problema como error " + hora);
+        }
+        
+        res.send(a);
+    }).catch(error=>{
+        console.log(error);
+        res.send(error);
+    });
+}
 //////////Función obtener Hora/////
 function obtener_hora() {
     var date = new Date();
@@ -155,3 +206,4 @@ function obtener_hora() {
     return (hora);
 }
 /////////////////////////////////
+
